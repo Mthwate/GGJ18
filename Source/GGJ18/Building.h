@@ -14,10 +14,6 @@ public:
 	// Sets default values for this actor's properties
 	ABuilding();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 public:	
 	/** Get the current health of the building */
 	UFUNCTION(BlueprintPure, Category = "Building Properties")
@@ -51,18 +47,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Building Properties")
 		int GetHeight();
 
-	/** The amount of food need to buy a new building */
-	UFUNCTION(BlueprintPure, Category = "Building Properties")
-		int GetFoodCost();
-
-	/** The amount of wood need to buy a new building */
-	UFUNCTION(BlueprintPure, Category = "Building Properties")
-		int GetWoodCost();
-
-	/** The amount of stone need to buy a new building */
-	UFUNCTION(BlueprintPure, Category = "Building Properties")
-		int GetStoneCost();
-
 private:
 	// The Current Health of the Building
 	int CurrentHealth;
@@ -78,17 +62,5 @@ private:
 	// The Height of the Building in Tiles
 	UPROPERTY(EditDefaultsOnly, Category = "Building Properties")
 		int Height;
-
-	// The Amount of Food Needed to Purchase this Building
-	UPROPERTY(EditDefaultsOnly, Category = "Building Properties")
-		int FoodCost;
-
-	// The Amount of Wood Needed to Purchase this Building
-	UPROPERTY(EditDefaultsOnly, Category = "Building Properties")
-		int WoodCost;
-
-	// The Amount of Stone Needed to Purchase this Building
-	UPROPERTY(EditDefaultsOnly, Category = "Building Properties")
-		int StoneCost;
 	
 };
