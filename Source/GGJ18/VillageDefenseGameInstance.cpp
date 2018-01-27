@@ -59,3 +59,7 @@ void UVillageDefenseGameInstance::AddStone(int Amount) {
 void UVillageDefenseGameInstance::LoseStone(int Amount) {
 	SetFood(Stone - Amount);
 }
+
+buildingCosts UVillageDefenseGameInstance::GetBuildingCosts() {
+	return BuildingCosts;
+}

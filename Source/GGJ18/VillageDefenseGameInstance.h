@@ -6,6 +6,21 @@
 #include "Engine/GameInstance.h"
 #include "VillageDefenseGameInstance.generated.h"
 
+
+
+struct cost  {
+	int food;
+	int wood;
+	int stone;
+};
+
+
+struct buildingCosts {
+	cost house[];
+	cost farm[];
+};
+
+
 /**
  * 
  */
@@ -72,5 +87,7 @@ private:
 
 	// The Current Amount of Stone the Player Has
 	int Stone;
+
+	buildingCosts BuildingCosts;
 
 };
