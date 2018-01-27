@@ -15,10 +15,15 @@ void UVillageDefenseGameInstance::Init() {
 	// Init the Grid
 	for (int i = 0; i < DEFAULTWIDTH; i++) {
 		Grid.Add(TArray<ABuilding*>());
-		for (int j = 0; ; j < DEFAULTHEIGHT; j++) {
+		for (int j = 0; j < DEFAULTHEIGHT; j++) {
 			Grid[i].Add(NULL);
 		}
 	}
+
+
+
+
+
 }
 
 
@@ -76,7 +81,7 @@ void UVillageDefenseGameInstance::LoseStone(int Amount) {
 	SetFood(Stone - Amount);
 }
 
-buildingCosts UVillageDefenseGameInstance::GetBuildingCosts() {
+FBuildingCosts UVillageDefenseGameInstance::GetBuildingCosts() {
 	return BuildingCosts;
 }
 

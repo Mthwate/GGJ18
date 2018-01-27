@@ -8,21 +8,29 @@
 #include "VillageDefenseGameInstance.generated.h"
 
 
+USTRUCT(BlueprintType)
+struct FCost  {
 
-struct cost  {
+	GENERATED_BODY()
+
 	int food;
 	int wood;
 	int stone;
 };
 
+USTRUCT(BlueprintType)
+struct FBuildingCosts {
 
-struct buildingCosts {
-	cost house[];
-	cost farm[];
+	GENERATED_BODY()
+
+	FCost * house;
+	FCost * farm;
 };
 
 USTRUCT(BlueprintType)
 struct FBuildingPosition {
+
+	GENERATED_BODY()
 
 	// The Actual Building
 	ABuilding* Building;
@@ -92,6 +100,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Resources")
 		void LoseStone(int Amount);
 
+	UFUNCTION(BlueprintCallable, Category = "Buildings")
+		FBuildingCosts GetBuildingCosts();
+
 	/** Get the Building at the Current Position */
 	UFUNCTION(BlueprintPure, Category = "Buildings")
 		ABuilding* GetBuildingAtLocation(int X, int Y);
@@ -117,7 +128,7 @@ private:
 	// The Current Amount of Stone the Player Has
 	int Stone;
 
-	buildingCosts BuildingCosts;
+	FBuildingCosts BuildingCosts;
 
 	// Default Size of the Grid
 	static const int DEFAULTWIDTH;
