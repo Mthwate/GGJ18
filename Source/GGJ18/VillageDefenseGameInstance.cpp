@@ -20,9 +20,17 @@ void UVillageDefenseGameInstance::Init() {
 		}
 	}
 
+	
+	// cost { food, wood, stone }
+	BuildingCosts.house = {
+		{ 1, 1, 0 },
+		{ 2, 2, 0 },
+	};
 
-
-
+	BuildingCosts.farm = {
+		{ 0, 1, 1 },
+		{ 0, 2, 2 },
+	};
 
 }
 

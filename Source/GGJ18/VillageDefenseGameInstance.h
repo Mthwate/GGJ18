@@ -23,8 +23,8 @@ struct FBuildingCosts {
 
 	GENERATED_BODY()
 
-	FCost * house;
-	FCost * farm;
+	TArray<FCost> house;
+	TArray<FCost> farm;
 };
 
 USTRUCT(BlueprintType)
