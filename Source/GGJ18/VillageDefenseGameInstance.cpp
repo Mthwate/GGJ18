@@ -43,8 +43,7 @@ int UVillageDefenseGameInstance::GetFood() {
 }
 
 void UVillageDefenseGameInstance::SetFood(int Amount) {
-	Food = FMath::Clamp(Amount, 0, Amount); // Stub
-											// Change Max Amount
+	Food = FMath::Clamp(Amount, 0, GetMaxFood());
 }
 
 void UVillageDefenseGameInstance::AddFood(int Amount) {
@@ -55,21 +54,28 @@ void UVillageDefenseGameInstance::LoseFood(int Amount) {
 	SetFood(Food - Amount);
 }
 
+int UVillageDefenseGameInstance::GetMaxFood() {
+	return 9999; // Stub!
+}
+
 int UVillageDefenseGameInstance::GetWood() {
 	return Wood;
 }
 
 void UVillageDefenseGameInstance::SetWood(int Amount) {
-	Wood = FMath::Clamp(Amount, 0, Amount); // Stub
-										   // Change Max Amount
+	Wood = FMath::Clamp(Amount, 0, GetMaxWood());
 }
 
 void UVillageDefenseGameInstance::AddWood(int Amount) {
-	SetFood(Wood + Amount);
+	SetWood(Wood + Amount);
 }
 
 void UVillageDefenseGameInstance::LoseWood(int Amount) {
-	SetFood(Wood - Amount);
+	SetWood(Wood - Amount);
+}
+
+int UVillageDefenseGameInstance::GetMaxWood() {
+	return 9999; // Stub!
 }
 
 int UVillageDefenseGameInstance::GetStone() {
@@ -77,16 +83,39 @@ int UVillageDefenseGameInstance::GetStone() {
 }
 
 void UVillageDefenseGameInstance::SetStone(int Amount) {
-	Stone = FMath::Clamp(Amount, 0, Amount); // Stub
-										    // Change Max Amount
+	Stone = FMath::Clamp(Amount, 0, GetMaxStone());
 }
 
 void UVillageDefenseGameInstance::AddStone(int Amount) {
-	SetFood(Stone + Amount);
+	SetStone(Stone + Amount);
 }
 
 void UVillageDefenseGameInstance::LoseStone(int Amount) {
-	SetFood(Stone - Amount);
+	SetStone(Stone - Amount);
+}
+
+int UVillageDefenseGameInstance::GetMaxStone() {
+	return 9999; // Stub!
+}
+
+int UVillageDefenseGameInstance::GetPeople() {
+	return People;
+}
+
+void UVillageDefenseGameInstance::SetPeople(int Amount) {
+	People = FMath::Clamp(Amount, 0, GetMaxPeople());
+}
+
+void UVillageDefenseGameInstance::AddPeople(int Amount) {
+	SetPeople(People + Amount);
+}
+
+void UVillageDefenseGameInstance::LosePeople(int Amount) {
+	SetPeople(People - Amount);
+}
+
+int UVillageDefenseGameInstance::GetMaxPeople() {
+	return 999; // Stub!
 }
 
 FBuildingCosts UVillageDefenseGameInstance::GetBuildingCosts() {
