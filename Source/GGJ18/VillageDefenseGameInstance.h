@@ -150,6 +150,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Buildings")
 		bool CheckGrid(int X, int Y, int Width, int Height);
 
+	UFUNCTION(BlueprintPure, Category = "Grid")
+		int GetGridWidth();
+
+	UFUNCTION(BlueprintPure, Category = "Grid")
+		int GetGridHeight();
+
 private:
 	// The Current Amount of Food the Player Has
 	int Food;

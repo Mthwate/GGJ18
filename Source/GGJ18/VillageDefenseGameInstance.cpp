@@ -153,3 +153,11 @@ bool UVillageDefenseGameInstance::CheckGrid(int X, int Y, int Width, int Height)
 		return true;
 	}
 }
+
+int UVillageDefenseGameInstance::GetGridWidth() {
+	return DEFAULTWIDTH;
+}
+
+int UVillageDefenseGameInstance::GetGridHeight() {
+	return DEFAULTHEIGHT;
+}
