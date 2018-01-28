@@ -3,42 +3,82 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Blueprint/UserWidget.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "House.h"
+#include "Storehouse.h"
+#include "Farm.h"
+#include "ResourceStore.generated.h"
 
 /**
  * 
  */
-class GGJ18_API ResourceStore
+UCLASS(Blueprintable)
+class GGJ18_API UResourceStore : public UUserWidget
 {
+	GENERATED_BODY()
 
 public:
-	ResourceStore();
+	UResourceStore(const FObjectInitializer& ObjectInitializer);
 
-	int GetFood();
-	void SetFood(int Amount);
-	int GetMaxFood();
+protected:
+	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
-	int GetWood();
-	void SetWood(int Amount);
-	int GetMaxWood();
+public:
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetFood();
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void SetFood(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void GainFood(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void LoseFood(int Amount);
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetMaxFood();
 
-	int GetStone();
-	void SetStone(int Amount);
-	int GetMaxStone();
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetWood();
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void SetWood(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void GainWood(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void LoseWood(int Amount);
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetMaxWood();
 
-	int GetPeople();
-	void SetPeople(int Amount);
-	int GetMaxPeople();
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetStone();
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void SetStone(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void GainStone(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void LoseStone(int Amount);
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetMaxStone();
+
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetPeople();
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void SetPeople(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void GainPeople(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void LosePeople(int Amount);
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetMaxPeople();
 
 private:
+
+	// Resources
 	int Food;
-	int MaxFood;
-
 	int Wood;
-	int MaxWood;
-
 	int Stone;
-	int MaxStone;
-
 	int People;
-	int MaxPeople;
+
+	float FoodProduction;
+	float WoodProduction;
+	float StoneProduction;
+
 };

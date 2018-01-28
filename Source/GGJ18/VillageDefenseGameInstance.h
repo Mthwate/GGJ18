@@ -43,17 +43,6 @@ public:
 		FBuildingCosts GetBuildingCosts();
 
 private:
-	// The Current Amount of Food the Player Has
-	int Food;
-
-	// The Current Amount of Wood the Player Has
-	int Wood;
-
-	// The Current Amount of Stone the Player Has
-	int Stone;
-
-	// The number of people in the village
-	int People;
 
 	FBuildingCosts BuildingCosts;
 
