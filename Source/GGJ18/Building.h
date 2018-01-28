@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Zombie.h"
 #include "Building.generated.h"
 
 UCLASS(abstract)
@@ -14,7 +15,6 @@ public:
 	// Sets default values for this actor's properties
 	ABuilding();
 
-public:	
 	/** Get the current health of the building */
 	UFUNCTION(BlueprintPure, Category = "Building Properties")
 		int GetCurrentHealth();
