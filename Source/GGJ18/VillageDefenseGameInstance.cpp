@@ -2,23 +2,11 @@
 
 #include "VillageDefenseGameInstance.h"
 
-///////////////////////////////////////////////////////////
-// Constants
-const int UVillageDefenseGameInstance::DEFAULTWIDTH = 6;
-const int UVillageDefenseGameInstance::DEFAULTHEIGHT = 25;
-
 
 ///////////////////////////////////////////////////////////
 // Object Initialization
 
 void UVillageDefenseGameInstance::Init() {
-	// Init the Grid
-	for (int i = 0; i < DEFAULTWIDTH; i++) {
-		Grid.Add(TArray<ABuilding*>());
-		for (int j = 0; j < DEFAULTHEIGHT; j++) {
-			Grid[i].Add(NULL);
-		}
-	}
 
 	
 	// cost { food, wood, stone }
@@ -120,44 +108,4 @@ int UVillageDefenseGameInstance::GetMaxPeople() {
 
 FBuildingCosts UVillageDefenseGameInstance::GetBuildingCosts() {
 	return BuildingCosts;
-}
-
-ABuilding* UVillageDefenseGameInstance::GetBuildingAtLocation(int X, int Y) {
-	return Grid[X][Y];
-}
-
-void UVillageDefenseGameInstance::PlaceBuilding(ABuilding* Building, int X, int Y, int Width, int Height) {
-	if (CheckGrid(X, Y, Width, Height)) { // Check if the Building Can Be Placed
-		// Add the Building to the List
-		BuildingList.Add({ Building, X, Y });
-		// Add the Building the Grid
-		for (int i = X; i < X + Width; i++) {
-			for (int j = Y; j < Y + Height; j++) {
-				Grid[i][j] = Building;
-			}
-		}
-	}
-}
-
-bool UVillageDefenseGameInstance::CheckGrid(int X, int Y, int Width, int Height) {
-	if ((X + Width) >= DEFAULTWIDTH || (Y + Height) >= DEFAULTHEIGHT) {
-		return false;
-	} else {
-		for (int i = X; i < X + Width; i++) {
-			for (int j = Y; j < Y + Height; j++) {
-				if (Grid[i][j] != NULL) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-}
-
-int UVillageDefenseGameInstance::GetGridWidth() {
-	return DEFAULTWIDTH;
-}
-
-int UVillageDefenseGameInstance::GetGridHeight() {
-	return DEFAULTHEIGHT;
 }
