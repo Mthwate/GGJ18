@@ -21,6 +21,13 @@ void AGrid::BeginPlay()
 		TileGrid[i] = new AActor*[height];
 	}
 
+	for (int x = 0; x < width; x++) {
+		Grid.Add(TArray<ABuilding*>());
+		for (int y = 0; y < height; y++) {
+			Grid[x].Add(NULL);
+		}
+	}
+
 
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
@@ -30,6 +37,8 @@ void AGrid::BeginPlay()
 			TileGrid[x][y] = actor;
 		}
 	}
+
+	GenMap(5);
 
 }
 
@@ -41,6 +50,11 @@ bool AGrid::PlaceBuilding(ABuilding* Building, int X, int Y) {
 	if (CanPlaceBuilding(Building, X, Y)) { // Check if the Building Can Be Placed
 										  // Add the Building to the List
 		BuildingList.Add(Building);
+		
+		FVector Location(X * 100, Y * 100, 0.0f);
+		Building->SetActorLocation(Location);
+		Building->AttachRootComponentToActor(this);
+		
 		// Add the Building the Grid
 		for (int i = X; i < X + Building->GetWidth(); i++) {
 			for (int j = Y; j < Y + Building->GetHeight(); j++) {
@@ -50,7 +64,6 @@ bool AGrid::PlaceBuilding(ABuilding* Building, int X, int Y) {
 				TileGrid[i][j] = NULL;
 			}
 		}
-		
 		return true;
 	}
 	else {
@@ -88,4 +101,21 @@ void AGrid::SetGridWidth(int W) {
 
 void AGrid::SetGridHeight(int H) {
 	height = H;
+}
+
+void AGrid::GenMap(int NumBuildings) {
+
+	for (int i = 0; i < NumBuildings; i++) {
+		ABuilding * building;
+		int x;
+		int y;
+		do {
+			int bi = FMath::RandRange(0, buildings.Num() - 1);
+			building = Cast<ABuilding>(GetWorld()->SpawnActor(buildings[bi]));
+
+			x = FMath::RandRange(0, width - 1);
+			y = FMath::RandRange(0, height - 1);
+		} while (!PlaceBuilding(building, x, y));
+	}
+	
 }
