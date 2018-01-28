@@ -5,6 +5,7 @@
 
 // Sets default values
 ABuilding::ABuilding() {
+
 	// Set Default Values of Members
 	CurrentHealth = MaxHealth = 100;
 	Width = 1;

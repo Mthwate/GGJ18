@@ -27,19 +27,6 @@ struct FBuildingCosts {
 	TArray<FCost> farm;
 };
 
-USTRUCT(BlueprintType)
-struct FBuildingPosition {
-
-	GENERATED_BODY()
-
-	// The Actual Building
-	ABuilding* Building;
-
-	// The X and Y Coordinates
-	int X, Y;
-
-};
-
 
 /**
  * 
@@ -52,133 +39,11 @@ public:
 
 	virtual void Init() override;
 
-	/** The Current Amount of Food the Player Has */
-	UFUNCTION(BlueprintPure, Category = "Resources")
-		int GetFood();
-
-	/** Set The Amount of Food the Player Has */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void SetFood(int Amount);
-
-	/** Give the Player More Food */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void AddFood(int Amount);
-
-	/** Take Food from the Player */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void LoseFood(int Amount);
-
-	/** Gets the max amount of food the village can have */
-	UFUNCTION(BlueprintPure, Category = "Resources")
-		int GetMaxFood();
-
-	/** The Current Amount of Wood the Player Has */
-	UFUNCTION(BlueprintPure, Category = "Resources")
-		int GetWood();
-
-	/** Set The Amount of Wood the Player Has */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void SetWood(int Amount);
-
-	/** Give the Player More Wood */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void AddWood(int Amount);
-
-	/** Take Wood from the Player */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void LoseWood(int Amount);
-
-	/** Gets the max amount of wood the village can have */
-	UFUNCTION(BlueprintPure, Category = "Resources")
-		int GetMaxWood();
-
-	/** The Current Amount of Stone the Player Has */
-	UFUNCTION(BlueprintPure, Category = "Resources")
-		int GetStone();
-
-	/** Set The Amount of Stone the Player Has */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void SetStone(int Amount);
-
-	/** Give the Player More Stone */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void AddStone(int Amount);
-
-	/** Take Stone from the Player */
-	UFUNCTION(BlueprintCallable, Category = "Resources")
-		void LoseStone(int Amount);
-
-	/** Gets the max amount of stone the village can have */
-	UFUNCTION(BlueprintPure, Category = "Resources")
-		int GetMaxStone();
-
-	/** The Current Number of People in the Village */
-	UFUNCTION(BlueprintPure, Category = "People")
-		int GetPeople();
-
-	/** Set The Amount of People in the Village */
-	UFUNCTION(BlueprintCallable, Category = "People")
-		void SetPeople(int Amount);
-
-	/** Add People to the Village */
-	UFUNCTION(BlueprintCallable, Category = "People")
-		void AddPeople(int Amount);
-
-	/** Remove People from the Village */
-	UFUNCTION(BlueprintCallable, Category = "People")
-		void LosePeople(int Amount);
-
-	/** Gets the max number of people the village can face */
-	UFUNCTION(BlueprintPure, Category = "People")
-		int GetMaxPeople();
-
 	UFUNCTION(BlueprintCallable, Category = "Buildings")
 		FBuildingCosts GetBuildingCosts();
 
-	/** Get the Building at the Current Position */
-	UFUNCTION(BlueprintPure, Category = "Buildings")
-		ABuilding* GetBuildingAtLocation(int X, int Y);
-
-	/** Place a Building onto the Grid */
-	UFUNCTION(BlueprintCallable, Category = "Buildings")
-		void PlaceBuilding(ABuilding* Building, int X, int Y, int Width, int Height);
-
-	/** 
-	 * Check the Grid to See if a Building Can Be Placed 
-	 * Returns true if it a building can be placed
-	 */
-	UFUNCTION(BlueprintPure, Category = "Buildings")
-		bool CheckGrid(int X, int Y, int Width, int Height);
-
-	UFUNCTION(BlueprintPure, Category = "Grid")
-		int GetGridWidth();
-
-	UFUNCTION(BlueprintPure, Category = "Grid")
-		int GetGridHeight();
-
 private:
-	// The Current Amount of Food the Player Has
-	int Food;
-
-	// The Current Amount of Wood the Player Has
-	int Wood;
-
-	// The Current Amount of Stone the Player Has
-	int Stone;
-
-	// The number of people in the village
-	int People;
 
 	FBuildingCosts BuildingCosts;
-
-	// Default Size of the Grid
-	static const int DEFAULTWIDTH;
-	static const int DEFAULTHEIGHT;
-
-	// The List of All Buildings in the Map
-	TArray<FBuildingPosition> BuildingList;
-
-	// The Current Layout of the Grid
-	TArray<TArray<ABuilding*>> Grid;
 
 };
