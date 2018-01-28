@@ -16,25 +16,10 @@ void AGrid::BeginPlay()
 	Super::BeginPlay();
 
 
-	TileGrid = new AActor**[width];
-	for (int i = 0; i < width; i++) {
-		TileGrid[i] = new AActor*[height];
-	}
-
 	for (int x = 0; x < width; x++) {
 		Grid.Add(TArray<ABuilding*>());
 		for (int y = 0; y < height; y++) {
 			Grid[x].Add(NULL);
-		}
-	}
-
-
-	for (int x = 0; x < width; x++) {
-		for (int y = 0; y < height; y++) {
-			FVector Location(x * 100, y * 100, 0.0f);
-			AActor* actor = GetWorld()->SpawnActor(gridTile, &Location);
-			actor->AttachRootComponentToActor(this);
-			TileGrid[x][y] = actor;
 		}
 	}
 
@@ -59,9 +44,6 @@ bool AGrid::PlaceBuilding(ABuilding* Building, int X, int Y) {
 		for (int i = X; i < X + Building->GetWidth(); i++) {
 			for (int j = Y; j < Y + Building->GetHeight(); j++) {
 				Grid[i][j] = Building;
-				AActor* tileGrid = TileGrid[i][j];
-				tileGrid->DetachRootComponentFromParent();
-				TileGrid[i][j] = NULL;
 			}
 		}
 		return true;

@@ -58,16 +58,11 @@ private:
 	// The Current Layout of the Grid
 	TArray<TArray<ABuilding*>> Grid;
 
-	AActor *** TileGrid;
-
 	UPROPERTY(EditDefaultsOnly, Category = "Grid")
 		int width;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Grid")
 		int height;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Grid")
-		UClass * gridTile;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Grid")
 		TArray<UClass*> buildings;
