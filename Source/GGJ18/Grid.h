@@ -47,9 +47,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 private:
 
 	// The List of All Buildings in the Map
@@ -58,7 +55,7 @@ private:
 	// The Current Layout of the Grid
 	TArray<TArray<ABuilding*>> Grid;
 
-	TArray<TArray<AActor*>> TileGrid;
+	AActor *** TileGrid;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Grid")
 		int width;

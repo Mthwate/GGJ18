@@ -7,13 +7,20 @@
 AGrid::AGrid()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	//PrimaryActorTick.bCanEverTick = true;
 }
 
 // Called when the game starts or when spawned
 void AGrid::BeginPlay()
 {
 	Super::BeginPlay();
+
+
+	TileGrid = new AActor**[width];
+	for (int i = 0; i < width; i++) {
+		TileGrid[i] = new AActor*[height];
+	}
+
 
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
@@ -24,12 +31,6 @@ void AGrid::BeginPlay()
 		}
 	}
 
-}
-
-// Called every frame
-void AGrid::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 
 ABuilding* AGrid::GetBuildingAtLocation(int X, int Y) {
