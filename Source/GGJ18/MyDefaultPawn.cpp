@@ -2,7 +2,6 @@
 
 #include "MyDefaultPawn.h"
 #include "Components/DecalComponent.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h"
 #include "Materials/Material.h"
 

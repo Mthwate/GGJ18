@@ -3,7 +3,6 @@
 #include "TopDownPlayerController.h"
 #include "AI/Navigation/NavigationSystem.h"
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 
 ATopDownPlayerController::ATopDownPlayerController() {
 	bShowMouseCursor = true;
