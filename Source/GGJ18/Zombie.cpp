@@ -8,6 +8,8 @@ AZombie::AZombie() {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Health = 0;
+
 	// Initialize the Components
 	PawnSensing = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("Senses"));
 
@@ -34,6 +36,9 @@ void AZombie::Tick(float DeltaTime) {
 			AttackTick = 0.f;
 			GetNearestBuilding()->LoseHealth(10);
 			if (GetNearestBuilding()->GetCurrentHealth() == 0) {
+				if (GetNearestBuilding()->IsA(AHouse::StaticClass())) {
+					Cast<AGGJ18GameModeBase>(GetWorld()->GetAuthGameMode())->GetResourceStore()->GainZombies(Cast<AHouse>(GetNearestBuilding())->GetResidenceCapacity());
+				}
 				GetNearestBuilding()->Destroy();
 				ReshuffleBuildings();
 				TArray<AActor*> FoundActors;
@@ -85,4 +90,20 @@ ABuilding* AZombie::GetNearestBuilding() {
 	} else {
 		return NULL;
 	}
+}
+
+int AZombie::GetHealth() {
+	return Health;
+}
+
+void AZombie::SetHealth(int Amount) {
+	Health = FMath::Clamp(Amount, 0, Amount);
+}
+
+void AZombie::GainHealth(int Amount) {
+	SetHealth(Health + Amount);
+}
+
+void AZombie::LoseHealth(int Amount) {
+	GainHealth(-Amount);
 }

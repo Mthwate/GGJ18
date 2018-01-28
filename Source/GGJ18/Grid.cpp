@@ -51,7 +51,7 @@ bool AGrid::PlaceBuilding(ABuilding* Building, int X, int Y) {
 										  // Add the Building to the List
 		BuildingList.Add(Building);
 		
-		FVector Location(X * 100, Y * 100, 0.0f);
+		FVector Location(X * 100 - 50, Y * 100 - 50, 0.0f);
 		Building->SetActorLocation(Location);
 		Building->AttachRootComponentToActor(this);
 		

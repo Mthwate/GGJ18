@@ -69,6 +69,15 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Resources")
 		int GetMaxPeople();
 
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetZombies();
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void SetZombies(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void GainZombies(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Resources")
+		void LoseZombies(int Amount);
+
 private:
 
 	// Resources
@@ -76,6 +85,7 @@ private:
 	int Wood;
 	int Stone;
 	int People;
+	int Zombies;
 
 	float FoodProduction;
 	float WoodProduction;

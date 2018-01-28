@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Runtime/AIModule/Classes/Perception/PawnSensingComponent.h"
 #include "Building.h"
+#include "House.h"
+#include "GGJ18GameModeBase.h"
 #include "Runtime/AIModule/Classes/AIController.h"
 #include "Runtime/Engine/Classes/Components/SphereComponent.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
@@ -52,12 +54,22 @@ public:
 	UFUNCTION(BlueprintPure, Category = Movement)
 		ABuilding* GetNearestBuilding();
 
-	
+	UFUNCTION(BlueprintPure, Category = "Health")
+		int GetHealth();
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void SetHealth(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void GainHealth(int Amount);
+	UFUNCTION(BlueprintCallable, Category = "Health")
+		void LoseHealth(int Amount);
 
 private:
 
 	// An ordered list of all buildings in order of distance from the zombie
 	TArray<ABuilding*> Buildings;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Health")
+		int Health;
 
 	float AttackTick;
 	
