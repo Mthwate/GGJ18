@@ -43,6 +43,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grid")
 		void SetGridHeight(int H);
 
+	UFUNCTION(BlueprintCallable, Category = "Grid")
+		void GenMap(int NumBuildings);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -65,5 +68,8 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Grid")
 		UClass * gridTile;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Grid")
+		TArray<UClass*> buildings;
 	
 };
