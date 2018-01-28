@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "Runtime/AIModule/Classes/Perception/PawnSensingComponent.h"
 #include "Building.h"
+#include "Runtime/AIModule/Classes/AIController.h"
+#include "Runtime/Engine/Classes/Components/SphereComponent.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Zombie.generated.h"
 
 UCLASS()
@@ -13,8 +16,12 @@ class GGJ18_API AZombie : public ACharacter {
 	GENERATED_BODY()
 
 	/** Initializes the Pawn Sensing Component for the Zombie */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pawn Sensing", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Detection", meta = (AllowPrivateAccess = "true"))
 		UPawnSensingComponent* PawnSensing;
+
+	/** Component that gets the buildings in a radius */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Detection", meta = (AllowPrivateAccess = "true"))
+		USphereComponent* DetectionRadius;
 
 public:
 	// Sets default values for this character's properties
@@ -33,6 +40,26 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Movement)
 		void ApproachBuilding(ABuilding* Building);
+
+	UFUNCTION(BlueprintCallable, Category = Movement)
+		void FindBuildings(TArray<ABuilding*> Buildings);
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void ReshuffleBuildings();
+
+	void ParseBuildingDistance();
+
+	UFUNCTION(BlueprintPure, Category = Movement)
+		ABuilding* GetNearestBuilding();
+
+	
+
+private:
+
+	// An ordered list of all buildings in order of distance from the zombie
+	TArray<ABuilding*> Buildings;
+
+	float AttackTick;
 	
 	
 };
