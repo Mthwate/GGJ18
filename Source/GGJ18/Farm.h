@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Building.h"
-#include "GGJ18GameModeBase.h"
 #include "Farm.generated.h"
 
 /**
