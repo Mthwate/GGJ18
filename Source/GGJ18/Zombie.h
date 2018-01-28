@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Runtime/AIModule/Classes/Perception/PawnSensingComponent.h"
+#include "Building.h"
 #include "Zombie.generated.h"
 
 UCLASS()
@@ -30,6 +31,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable, Category = Movement)
+		void ApproachBuilding(ABuilding* Building);
 	
 	
 };
