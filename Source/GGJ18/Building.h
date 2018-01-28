@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Zombie.h"
 #include "Building.generated.h"
 
 UCLASS(abstract)

@@ -9,6 +9,8 @@ UResourceStore::UResourceStore(const FObjectInitializer& ObjectInitializer) : Su
 	Stone = 0;
 	People = 0;
 
+	Zombies = 10;
+
 	FoodProduction = 0.0f;
 	WoodProduction = 0.0f;
 	StoneProduction = 0.0f;
@@ -17,6 +19,7 @@ UResourceStore::UResourceStore(const FObjectInitializer& ObjectInitializer) : Su
 void UResourceStore::NativeTick(const FGeometry& MyGeometry, float InDeltaTime) {
 	Super::Tick(MyGeometry, InDeltaTime);
 
+	/*
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFarm::StaticClass(), FoundActors);
 	for (AActor* Actor : FoundActors) {
@@ -27,6 +30,7 @@ void UResourceStore::NativeTick(const FGeometry& MyGeometry, float InDeltaTime) 
 		FoodProduction -= Prod;
 		GainFood(Prod);
 	}
+	*/
 }
 
 // FOOD
@@ -140,4 +144,22 @@ int UResourceStore::GetMaxPeople() {
 		Capacity += Cast<AHouse>(Actor)->GetResidenceCapacity();
 	}
 	return Capacity;
+}
+
+// ZOMBIES
+
+int UResourceStore::GetZombies() {
+	return Zombies;
+}
+
+void UResourceStore::SetZombies(int Amount) {
+	Zombies = FMath::Clamp(Amount, 0, Amount);
+}
+
+void UResourceStore::GainZombies(int Amount) {
+	SetZombies(Zombies + Amount);
+}
+
+void UResourceStore::LoseZombies(int Amount) {
+	GainZombies(-Amount);
 }

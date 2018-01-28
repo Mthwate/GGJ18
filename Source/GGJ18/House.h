@@ -17,7 +17,8 @@ public:
 
 	AHouse();
 
-	int GetResidenceCapacity();
+	UFUNCTION(BlueprintPure, Category = "Resources")
+		int GetResidenceCapacity();
 
 private:
 
